@@ -1,47 +1,7 @@
 {
-  "name": "event-sourcing-nestjs",
-  "version": "1.1.4",
+  "name": "@incognitus/event-sourcing-nestjs",
+  "version": "1.2.0",
   "description": "NestJS module for implementing Event Sourcing.",
-  "main": "index.js",
-  "scripts": {
-    "prebuild": "rm -rf dist",
-    "build": "tsc -p tsconfig.json",
-    "prepublish:npm": "npm run build",
-    "publish:npm": "npm publish --access public",
-    "prepublish:next": "npm run build",
-    "publish:next": "npm publish --access public --tag next",
-    "lint": "eslint \"{src,test}/**/*.ts\" --fix && npm run prettier",
-    "prettier": "prettier --write 'src/*.{ts, js}'"
-  },
-  "dependencies": {
-    "@types/node": "^13.5.0",
-    "eventstore": "^1.15.2",
-    "mongodb": "^3.5.2"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@nestjs/common": "6.10.14",
-    "@nestjs/core": "^6.7.2",
-    "@nestjs/cqrs": "^6.1.0",
-    "@nestjs/platform-express": "^6.11.1",
-    "@typescript-eslint/eslint-plugin": "^2.23.0",
-    "@typescript-eslint/parser": "^2.23.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.20.1",
-    "husky": "^4.2.3",
-    "prettier": "^2.0.1",
-    "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.5.4",
-    "ts-node": "^8.6.2",
-    "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.8.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ArkerLabs/event-sourcing-nestjs.git"
-  },
   "keywords": [
     "nestjs",
     "es",
@@ -49,15 +9,47 @@
     "cqrs",
     "ddd"
   ],
-  "author": "ArkerLabs",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ArkerLabs/event-sourcing-nestjs/issues"
+  "author": "Incognitus, LLC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Incognitus-Io/event-sourcing-nestjs.git"
   },
-  "homepage": "https://github.com/ArkerLabs/event-sourcing-nestjs#readme",
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+  "bugs": {
+    "url": "https://github.com/Incognitus-Io/event-sourcing-nestjs/issues"
+  },
+  "homepage": "https://github.com/Incognitus-Io/event-sourcing-nestjs#readme",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "rimraf -rf dist",
+    "build": "tsc -p tsconfig.json",
+    "prepublish:npm": "yarn build",
+    "publish:npm": "yarn publish --access public",
+    "prepublish:next": "yarn build",
+    "publish:next": "yarn publish --access public --tag next",
+    "lint": "eslint \"{src,test}/**/*.ts\" --fix && yarn prettier",
+    "prettier": "prettier --write 'src/*.{ts, js}'"
+  },
+  "dependencies": {
+    "@types/node": "^14.10.1",
+    "eventstore": "^1.15.5"
+  },
+  "devDependencies": {
+    "@nestjs/common": "7.4.4",
+    "@nestjs/core": "^7.4.4",
+    "@nestjs/cqrs": "^7.0.1",
+    "@nestjs/platform-express": "^7.4.4",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "prettier": "^2.1.1",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^6.6.3",
+    "ts-node": "^9.0.0",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.0.2"
   }
 }

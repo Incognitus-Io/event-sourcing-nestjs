@@ -30,7 +30,7 @@ Library that implements event sourcing using NestJS and his CQRS library.
 
 ## 🛠 Installation
 ```bash
-npm install event-sourcing-nestjs @nestjs/cqrs --save
+npm install @incognitus/event-sourcing-nestjs @nestjs/cqrs --save
 ```
 
 ## Usage
@@ -206,7 +206,7 @@ export class HeroRepository {
 
 
 #### State of the art
-![State of the art](https://raw.githubusercontent.com/ArkerLabs/event-sourcing-nestjs/master/docs/state.jpg)
+![State of the art](https://raw.githubusercontent.com/Incognitus-Io/event-sourcing-nestjs/master/docs/state.jpg)
 
 
 After emitting an event, use a view updater to update the read database state.
@@ -238,12 +238,3 @@ await ReconstructViewDb.run(await NestFactory.create(AppModule.forRoot()));
 You can find a working example using the Materialized View pattern [here](https://github.com/ArkerLabs/event-sourcing-nestjs-example).
 
 Also a working example with Nest aggregates working [here](https://github.com/Nytyr/nest-cqrs-eventsourcing-example).
-
-## TODOs
-* Use snapshots, so we can reconstruct the aggregates faster.
-
-
-## 📝 Stay in touch
-
-- Author - [Nytyr](https://keybase.io/nytyr)
-- Website - [https://arkerlabs.com/](https://arkerlabs.com/)
