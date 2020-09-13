@@ -1,27 +1,14 @@
-import { StorableEvent } from './interfaces/storable-event';
 import * as eventstore from 'eventstore';
-import * as url from 'url';
+
+import { StorableEvent } from './interfaces/storable-event';
+import { EventSourcingOptions } from './interfaces';
 
 export class EventStore {
   private readonly eventstore;
   private eventStoreLaunched = false;
 
-  constructor(mongoURL: string) {
-    let ssl = false;
-
-    const parsed = url.parse(mongoURL, true);
-
-    if (parsed.query && parsed.query.ssl !== undefined && parsed.query.ssl === 'true') {
-      ssl = true;
-    }
-
-    this.eventstore = eventstore({
-      type: 'mongodb',
-      url: mongoURL,
-      options: {
-        ssl: ssl,
-      },
-    });
+  constructor(options: EventSourcingOptions) {
+    this.eventstore = eventstore(options);
     this.eventstore.init(err => {
       if (err) {
         throw err;
@@ -41,7 +28,7 @@ export class EventStore {
     return new Promise<StorableEvent[]>(resolve => {
       this.eventstore.getFromSnapshot(
         this.getAgrregateId(aggregate, id),
-        (err, snapshot, stream) => {
+        (_err, _snapshot, stream) => {
           // snapshot.data; // Snapshot
           resolve(
             stream.events.map(event =>
@@ -54,8 +41,8 @@ export class EventStore {
   }
 
   public async getEvent(index: number): Promise<StorableEvent> {
-    return new Promise<StorableEvent>((resolve, reject) => {
-      this.eventstore.getEvents(index, 1, (err, events) => {
+    return new Promise<StorableEvent>((resolve, _reject) => {
+      this.eventstore.getEvents(index, 1, (_err, events) => {
         if (events.length > 0) {
           resolve(this.getStorableEventFromPayload(events[0].payload));
         } else {
